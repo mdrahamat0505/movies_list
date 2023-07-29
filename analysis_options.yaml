@@ -24,7 +24,7 @@ linter:
   # producing the lint.
   rules:
      public_member_api_docs: false
-     lines_longer_than_80_chars: false
+     lines_longer_than_80_chars: true
      comment_references: false
      avoid_positional_boolean_parameters: false
      avoid_print: true  # Uncomment to disable the `avoid_print` rule
