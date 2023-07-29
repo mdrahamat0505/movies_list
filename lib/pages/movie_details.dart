@@ -5,8 +5,13 @@ import 'package:movies_list/helpers/hex_color.dart';
 
 import 'package:movies_list/pages/home_page.dart';
 
+import '../models/movies_list.dart';
+
 class MovieDetails extends StatelessWidget {
-  const MovieDetails({super.key});
+  final MoviesList movie;
+  final int it;
+
+  const MovieDetails({Key? key, required this.movie, required this.it}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +29,8 @@ class MovieDetails extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(0),
               child: Image.network(
-                fit: BoxFit.fill,
-                'https://image.tmdb.org/t/p/w500/yJdeWaVXa2se9agI6B4mQunVYkB.jpg',
+
+                '${movie.movies?[it].posterUrl}',
               ),
             ),
           ),
@@ -33,7 +38,7 @@ class MovieDetails extends StatelessWidget {
             padding: const EdgeInsets.only(top: 10, left: 10),
             child: InkWell(
               onTap: (){
-                Get.offAll(() => const HomePage());
+                Get.offAll(() =>  HomePage());
               },
               child: Container(
                 width: 40.0,
