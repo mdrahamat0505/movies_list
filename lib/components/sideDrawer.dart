@@ -4,8 +4,8 @@ import 'package:movies_list/helpers/hex_color.dart';
 
 Drawer sideDrawer() {
   return Drawer(
-      width: 24,
-      backgroundColor: hexToColor('#000000'),
+    width: 24,
+    backgroundColor: hexToColor('#000000'),
     // backgroundColor: Colors.black12,
     child: ListView(
       padding: const EdgeInsets.symmetric(vertical: 50),
@@ -27,7 +27,7 @@ Drawer sideDrawer() {
                 style: TextStyle(fontSize: 15),
               ),
               onPressed: () async {
-              //  Get.to(() => UserProfile());
+                //  Get.to(() => UserProfile());
               },
             ),
           ],

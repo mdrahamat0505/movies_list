@@ -6,20 +6,20 @@ import 'package:movies_list/pages/home_page.dart';
 
 import 'controllers/home_page_controller.dart';
 
-Future<void> main() async{
+Future<void> main() async {
   Get.put(HomePageController());
-  runApp( MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       initialBinding: InitBinding(),
-      builder: (context, widget) => ScrollConfiguration(behavior: const ScrollBehaviorModified(), child: widget!),
+      builder: (context, widget) => ScrollConfiguration(
+          behavior: const ScrollBehaviorModified(), child: widget!),
       debugShowCheckedModeBanner: false,
-      home:  HomePage(),
+      home: HomePage(),
     );
   }
 }

@@ -16,7 +16,8 @@ class MoviesList {
     this.movies,
   });
 
-  factory MoviesList.fromJson(Map<String, dynamic> json) => _$MoviesListFromJson(json);
+  factory MoviesList.fromJson(Map<String, dynamic> json) =>
+      _$MoviesListFromJson(json);
   Map<String, dynamic> toJson() => _$MoviesListToJson(this);
 }
 

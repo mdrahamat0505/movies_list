@@ -114,18 +114,27 @@ class _HomePageState extends State<HomePage> {
                                     child: ListView(
                                       scrollDirection: Axis.horizontal,
                                       children: [
-                                        for (int i = 0; i <= logic.genres.value.length - 1; i++)
+                                        for (int i = 0;
+                                            i <= logic.genres.value.length - 1;
+                                            i++)
                                           Padding(
-                                            padding: const EdgeInsets.fromLTRB(8, 10, 8, 10),
+                                            padding: const EdgeInsets.fromLTRB(
+                                                8, 10, 8, 10),
                                             child: ElevatedButton(
                                               onPressed: () {},
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: hexToColor('#FFFFFF'),
-                                                backgroundColor: hexToColor('#000000'),
-                                                padding: const EdgeInsets.fromLTRB(8, 16, 8, 16),
+                                                foregroundColor:
+                                                    hexToColor('#FFFFFF'),
+                                                backgroundColor:
+                                                    hexToColor('#000000'),
+                                                padding:
+                                                    const EdgeInsets.fromLTRB(
+                                                        8, 16, 8, 16),
                                                 minimumSize: const Size(72, 36),
                                                 shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(70.0),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          70.0),
                                                   side: BorderSide(
                                                     color: hexToColor(
                                                       '#111322',
@@ -134,15 +143,18 @@ class _HomePageState extends State<HomePage> {
                                                 ),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsets.only(top: 5),
+                                                padding: const EdgeInsets.only(
+                                                    top: 5),
                                                 child: Text(
                                                   '${logic.genres.value[i]}',
                                                   style: TextStyle(
-                                                    decoration: TextDecoration.none,
+                                                    decoration:
+                                                        TextDecoration.none,
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w400,
                                                     fontFamily: 'Inter-Medium',
-                                                    color: hexToColor('#FFFFFF'),
+                                                    color:
+                                                        hexToColor('#FFFFFF'),
                                                     height: .2,
                                                   ),
                                                   textAlign: TextAlign.end,
@@ -172,7 +184,9 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ),
                                 for (MoviesList ls in logic.moviesList.value)
-                                  for (int i = 0; i <= logic.moviesList.value.length; i++)
+                                  for (int i = 0;
+                                      i <= logic.moviesList.value.length;
+                                      i++)
                                     Padding(
                                       padding: const EdgeInsets.all(2.0),
                                       child: InkWell(
@@ -186,26 +200,36 @@ class _HomePageState extends State<HomePage> {
                                           child: Card(
                                             elevation: 3,
                                             shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(16.0),
+                                              borderRadius:
+                                                  BorderRadius.circular(16.0),
                                               side: BorderSide(
                                                 color: hexToColor('#EAECF0'),
                                               ),
                                             ),
                                             child: Container(
-                                              margin: const EdgeInsets.all(12.0),
+                                              margin:
+                                                  const EdgeInsets.all(12.0),
                                               child: Row(
                                                 children: <Widget>[
                                                   Container(
                                                     width: 115.0,
                                                     height: 133.0,
                                                     decoration: BoxDecoration(
-                                                      borderRadius: const BorderRadius.all(Radius.circular(16)),
-                                                      color: hexToColor('#000000'),
+                                                      borderRadius:
+                                                          const BorderRadius
+                                                                  .all(
+                                                              Radius.circular(
+                                                                  16)),
+                                                      color:
+                                                          hexToColor('#000000'),
                                                     ),
                                                     child: ClipRRect(
-                                                      borderRadius: BorderRadius.circular(16.0),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              16.0),
                                                       child: SizedBox.fromSize(
-                                                        size: const Size.fromRadius(16),
+                                                        size: const Size
+                                                            .fromRadius(16),
                                                         child: Image.network(
                                                           '${ls.movies?[i].posterUrl}',
                                                         ),
@@ -216,16 +240,23 @@ class _HomePageState extends State<HomePage> {
                                                     width: 12,
                                                   ),
                                                   Column(
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: [
                                                       Text(
                                                         '${ls.movies?[i].title}',
                                                         style: TextStyle(
-                                                          decoration: TextDecoration.none,
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .none,
                                                           fontSize: 14,
-                                                          fontWeight: FontWeight.w700,
-                                                          fontFamily: 'Inter-SemiBold',
-                                                          color: hexToColor('#000000'),
+                                                          fontWeight:
+                                                              FontWeight.w700,
+                                                          fontFamily:
+                                                              'Inter-SemiBold',
+                                                          color: hexToColor(
+                                                              '#000000'),
                                                           height: .2,
                                                         ),
                                                       ),
@@ -237,22 +268,34 @@ class _HomePageState extends State<HomePage> {
                                                           Text(
                                                             'Year:',
                                                             style: TextStyle(
-                                                              decoration: TextDecoration.none,
+                                                              decoration:
+                                                                  TextDecoration
+                                                                      .none,
                                                               fontSize: 14,
-                                                              fontWeight: FontWeight.w400,
-                                                              fontFamily: 'Inter-Regular',
-                                                              color: hexToColor('#000000'),
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              fontFamily:
+                                                                  'Inter-Regular',
+                                                              color: hexToColor(
+                                                                  '#000000'),
                                                               height: .2,
                                                             ),
                                                           ),
                                                           Text(
                                                             '${ls.movies?[i].year}',
                                                             style: TextStyle(
-                                                              decoration: TextDecoration.none,
+                                                              decoration:
+                                                                  TextDecoration
+                                                                      .none,
                                                               fontSize: 14,
-                                                              fontWeight: FontWeight.w400,
-                                                              fontFamily: 'Inter-Regular',
-                                                              color: hexToColor('#000000'),
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              fontFamily:
+                                                                  'Inter-Regular',
+                                                              color: hexToColor(
+                                                                  '#000000'),
                                                               height: .21,
                                                             ),
                                                           ),
@@ -264,11 +307,16 @@ class _HomePageState extends State<HomePage> {
                                                       Text(
                                                         'Director:',
                                                         style: TextStyle(
-                                                          decoration: TextDecoration.none,
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .none,
                                                           fontSize: 14,
-                                                          fontWeight: FontWeight.w400,
-                                                          fontFamily: 'Inter-Regular',
-                                                          color: hexToColor('#000000'),
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          fontFamily:
+                                                              'Inter-Regular',
+                                                          color: hexToColor(
+                                                              '#000000'),
                                                           height: .2,
                                                         ),
                                                       ),
@@ -278,11 +326,16 @@ class _HomePageState extends State<HomePage> {
                                                       Text(
                                                         '${ls.movies?[i].director}',
                                                         style: TextStyle(
-                                                          decoration: TextDecoration.none,
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .none,
                                                           fontSize: 14,
-                                                          fontWeight: FontWeight.w400,
-                                                          fontFamily: 'Inter-Regular',
-                                                          color: hexToColor('#000000'),
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          fontFamily:
+                                                              'Inter-Regular',
+                                                          color: hexToColor(
+                                                              '#000000'),
                                                           height: .2,
                                                         ),
                                                       ),

@@ -75,7 +75,9 @@ class HomePageController extends GetxController with ApiService {
 
             // final asMap = Map<String, dynamic>.fromEntries(usdKey as Iterable<MapEntry<String, dynamic>>);
 
-            var moviesList = await usdKey.value.map((e) => MoviesList.fromJson(e as Map<String, dynamic>)).toList();
+            var moviesList = await usdKey.value
+                .map((e) => MoviesList.fromJson(e as Map<String, dynamic>))
+                .toList();
 
             moviesList.clear();
             moviesList.addAll(moviesList);
