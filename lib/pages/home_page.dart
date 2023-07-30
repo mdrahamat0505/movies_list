@@ -106,63 +106,58 @@ class _HomePageState extends State<HomePage> {
                             // mainAxisSize: MainAxisSize.min,
                             // crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Expanded(
-                                flex: 0,
-                                child: SizedBox(
-                                  height: 60,
-                                  child: ListView(
-                                    scrollDirection: Axis.horizontal,
-                                    children: [
-                                      for (int i = 0;
-                                          i <= logic.genres.value.length - 1;
-                                          i++)
-                                        Padding(
-                                          padding: const EdgeInsets.fromLTRB(
-                                              8, 10, 8, 10),
-                                          child: ElevatedButton(
-                                            onPressed: () {},
-                                            style: ElevatedButton.styleFrom(
-                                              foregroundColor:
-                                                  hexToColor('#FFFFFF'),
-                                              backgroundColor:
-                                                  hexToColor('#000000'),
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      8, 16, 8, 16),
-                                              minimumSize: const Size(72, 36),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(70.0),
-                                                side: BorderSide(
-                                                  color: hexToColor(
-                                                    '#111322',
-                                                  ),
+                              SizedBox(
+                                height: 60,
+                                child: ListView(
+                                  scrollDirection: Axis.horizontal,
+                                  children: [
+                                    for (int i = 0;
+                                        i <= logic.genres.value.length - 1;
+                                        i++)
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            8, 10, 8, 10),
+                                        child: ElevatedButton(
+                                          onPressed: () {},
+                                          style: ElevatedButton.styleFrom(
+                                            foregroundColor:
+                                                hexToColor('#FFFFFF'),
+                                            backgroundColor:
+                                                hexToColor('#000000'),
+                                            padding: const EdgeInsets.fromLTRB(
+                                                8, 16, 8, 16),
+                                            minimumSize: const Size(72, 36),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(70.0),
+                                              side: BorderSide(
+                                                color: hexToColor(
+                                                  '#111322',
                                                 ),
-                                              ),
-                                            ),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 5),
-                                              child: Text(
-                                                '${logic.genres.value[i]}',
-                                                overflow: TextOverflow.visible,
-                                                softWrap: false,
-                                                style: TextStyle(
-                                                  decoration:
-                                                      TextDecoration.none,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w400,
-                                                  fontFamily: 'Inter-Medium',
-                                                  color: hexToColor('#FFFFFF'),
-                                                  height: .2,
-                                                ),
-                                                textAlign: TextAlign.end,
                                               ),
                                             ),
                                           ),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 5),
+                                            child: Text(
+                                              '${logic.genres.value[i]}',
+                                              overflow: TextOverflow.visible,
+                                              softWrap: false,
+                                              style: TextStyle(
+                                                decoration: TextDecoration.none,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w400,
+                                                fontFamily: 'Inter-Medium',
+                                                color: hexToColor('#FFFFFF'),
+                                                height: .2,
+                                              ),
+                                              textAlign: TextAlign.end,
+                                            ),
+                                          ),
                                         ),
-                                    ],
-                                  ),
+                                      ),
+                                  ],
                                 ),
                               ),
                               const SizedBox(
@@ -208,7 +203,8 @@ class _HomePageState extends State<HomePage> {
                                           ),
                                         ),
                                         child: Container(
-                                          margin: const EdgeInsets.all(12.0),
+                                          margin: const EdgeInsets.only(
+                                              top: 12.0, bottom: 12),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
                                             children: <Widget>[

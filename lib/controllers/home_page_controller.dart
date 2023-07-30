@@ -71,6 +71,7 @@ class HomePageController extends GetxController with ApiService {
 
             final List<MoviesList> list = [];
             try {
+              genres.clear();
               genres.value = gene.value as List;
 
               list.add(MoviesList.fromJson(newsjson));
