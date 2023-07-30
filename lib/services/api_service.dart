@@ -9,7 +9,7 @@ class ApiService {
     required String baseUrl,
   }) async {
     try {
-      final response = await _dio.get('$baseUrl');
+      final Response response = await _dio.get('$baseUrl');
       return response;
     } catch (e) {
       log('$e');

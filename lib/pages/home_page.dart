@@ -8,8 +8,6 @@ import 'package:movies_list/helpers/hex_color.dart';
 
 import 'package:movies_list/pages/movie_details.dart';
 
-import '../models/movies_list.dart';
-
 class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
@@ -92,266 +90,286 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         body: GetBuilder<HomePageController>(
-            id: 'aVeryUniqueID',
-            builder: (logic) {
-              return logic.isMovies.value
-                  ? const Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : Obx(() {
-                      return logic.isMovies.value
-                          ? const Center(
-                              child: CircularProgressIndicator(),
-                            )
-                          : ListView(
-                              // mainAxisSize: MainAxisSize.min,
-                              // crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Expanded(
-                                  flex: 0,
-                                  child: SizedBox(
-                                    height: 60,
-                                    child: ListView(
-                                      scrollDirection: Axis.horizontal,
-                                      children: [
-                                        for (int i = 0;
-                                            i <= logic.genres.value.length - 1;
-                                            i++)
-                                          Padding(
-                                            padding: const EdgeInsets.fromLTRB(
-                                                8, 10, 8, 10),
-                                            child: ElevatedButton(
-                                              onPressed: () {},
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    hexToColor('#FFFFFF'),
-                                                backgroundColor:
-                                                    hexToColor('#000000'),
-                                                padding:
-                                                    const EdgeInsets.fromLTRB(
-                                                        8, 16, 8, 16),
-                                                minimumSize: const Size(72, 36),
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          70.0),
-                                                  side: BorderSide(
-                                                    color: hexToColor(
-                                                      '#111322',
-                                                    ),
+          id: 'aVeryUniqueID',
+          builder: (logic) {
+            return logic.isMovies.value
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : Obx(() {
+                    return (logic.moviesList.value != [] &&
+                            logic.isMovies.value)
+                        ? const Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : ListView(
+                            // mainAxisSize: MainAxisSize.min,
+                            // crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Expanded(
+                                flex: 0,
+                                child: SizedBox(
+                                  height: 60,
+                                  child: ListView(
+                                    scrollDirection: Axis.horizontal,
+                                    children: [
+                                      for (int i = 0;
+                                          i <= logic.genres.value.length - 1;
+                                          i++)
+                                        Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              8, 10, 8, 10),
+                                          child: ElevatedButton(
+                                            onPressed: () {},
+                                            style: ElevatedButton.styleFrom(
+                                              foregroundColor:
+                                                  hexToColor('#FFFFFF'),
+                                              backgroundColor:
+                                                  hexToColor('#000000'),
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      8, 16, 8, 16),
+                                              minimumSize: const Size(72, 36),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(70.0),
+                                                side: BorderSide(
+                                                  color: hexToColor(
+                                                    '#111322',
                                                   ),
                                                 ),
                                               ),
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 5),
-                                                child: Text(
-                                                  '${logic.genres.value[i]}',
-                                                  style: TextStyle(
-                                                    decoration:
-                                                        TextDecoration.none,
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w400,
-                                                    fontFamily: 'Inter-Medium',
-                                                    color:
-                                                        hexToColor('#FFFFFF'),
-                                                    height: .2,
-                                                  ),
-                                                  textAlign: TextAlign.end,
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.only(top: 5),
+                                              child: Text(
+                                                '${logic.genres.value[i]}',
+                                                overflow: TextOverflow.visible,
+                                                softWrap: false,
+                                                style: TextStyle(
+                                                  decoration:
+                                                      TextDecoration.none,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontFamily: 'Inter-Medium',
+                                                  color: hexToColor('#FFFFFF'),
+                                                  height: .2,
                                                 ),
-                                              ),
-                                            ),
-                                          ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Text(
-                                    '${logic.genres.value.length}Crime movies',
-                                    style: TextStyle(
-                                      decoration: TextDecoration.none,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400,
-                                      fontFamily: 'Inter-SemiBold',
-                                      color: hexToColor('#000000'),
-                                      height: .2,
-                                    ),
-                                  ),
-                                ),
-                                for (MoviesList ls in logic.moviesList.value)
-                                  for (int i = 0;
-                                      i <= logic.moviesList.value.length;
-                                      i++)
-                                    Padding(
-                                      padding: const EdgeInsets.all(2.0),
-                                      child: InkWell(
-                                        onTap: () {
-                                          Get.to(() => MovieDetails(
-                                                movie: ls,
-                                                it: i,
-                                              ));
-                                        },
-                                        child: SingleChildScrollView(
-                                          child: Card(
-                                            elevation: 3,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(16.0),
-                                              side: BorderSide(
-                                                color: hexToColor('#EAECF0'),
-                                              ),
-                                            ),
-                                            child: Container(
-                                              margin:
-                                                  const EdgeInsets.all(12.0),
-                                              child: Row(
-                                                children: <Widget>[
-                                                  Container(
-                                                    width: 115.0,
-                                                    height: 133.0,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          const BorderRadius
-                                                                  .all(
-                                                              Radius.circular(
-                                                                  16)),
-                                                      color:
-                                                          hexToColor('#000000'),
-                                                    ),
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              16.0),
-                                                      child: SizedBox.fromSize(
-                                                        size: const Size
-                                                            .fromRadius(16),
-                                                        child: Image.network(
-                                                          '${ls.movies?[i].posterUrl}',
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 12,
-                                                  ),
-                                                  Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Text(
-                                                        '${ls.movies?[i].title}',
-                                                        style: TextStyle(
-                                                          decoration:
-                                                              TextDecoration
-                                                                  .none,
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.w700,
-                                                          fontFamily:
-                                                              'Inter-SemiBold',
-                                                          color: hexToColor(
-                                                              '#000000'),
-                                                          height: .2,
-                                                        ),
-                                                      ),
-                                                      const SizedBox(
-                                                        height: 20,
-                                                      ),
-                                                      Row(
-                                                        children: [
-                                                          Text(
-                                                            'Year:',
-                                                            style: TextStyle(
-                                                              decoration:
-                                                                  TextDecoration
-                                                                      .none,
-                                                              fontSize: 14,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
-                                                              fontFamily:
-                                                                  'Inter-Regular',
-                                                              color: hexToColor(
-                                                                  '#000000'),
-                                                              height: .2,
-                                                            ),
-                                                          ),
-                                                          Text(
-                                                            '${ls.movies?[i].year}',
-                                                            style: TextStyle(
-                                                              decoration:
-                                                                  TextDecoration
-                                                                      .none,
-                                                              fontSize: 14,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
-                                                              fontFamily:
-                                                                  'Inter-Regular',
-                                                              color: hexToColor(
-                                                                  '#000000'),
-                                                              height: .21,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      const SizedBox(
-                                                        height: 20,
-                                                      ),
-                                                      Text(
-                                                        'Director:',
-                                                        style: TextStyle(
-                                                          decoration:
-                                                              TextDecoration
-                                                                  .none,
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.w400,
-                                                          fontFamily:
-                                                              'Inter-Regular',
-                                                          color: hexToColor(
-                                                              '#000000'),
-                                                          height: .2,
-                                                        ),
-                                                      ),
-                                                      const SizedBox(
-                                                        height: 20,
-                                                      ),
-                                                      Text(
-                                                        '${ls.movies?[i].director}',
-                                                        style: TextStyle(
-                                                          decoration:
-                                                              TextDecoration
-                                                                  .none,
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.w400,
-                                                          fontFamily:
-                                                              'Inter-Regular',
-                                                          color: hexToColor(
-                                                              '#000000'),
-                                                          height: .2,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  )
-                                                ],
+                                                textAlign: TextAlign.end,
                                               ),
                                             ),
                                           ),
                                         ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Text(
+                                  '${logic.genres.value.length}Crime movies',
+                                  style: TextStyle(
+                                    decoration: TextDecoration.none,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: 'Inter-SemiBold',
+                                    color: hexToColor('#000000'),
+                                    height: .2,
+                                  ),
+                                ),
+                              ),
+                              //  for (MoviesList ls in logic.moviesList.value)
+                              for (int i = 0;
+                                  i <= logic.moviesList.value.length - 1;
+                                  i++)
+                                Padding(
+                                  padding: const EdgeInsets.all(2.0),
+                                  child: InkWell(
+                                    onTap: () {
+                                      Get.to(
+                                        () => MovieDetails(
+                                          movie: logic.moviesList.value[i],
+                                          it: i,
+                                        ),
+                                      );
+                                    },
+                                    child: SingleChildScrollView(
+                                      child: Card(
+                                        elevation: 3,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(16.0),
+                                          side: BorderSide(
+                                            color: hexToColor('#EAECF0'),
+                                          ),
+                                        ),
+                                        child: Container(
+                                          margin: const EdgeInsets.all(12.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: <Widget>[
+                                              Container(
+                                                width: 115.0,
+                                                height: 133.0,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      const BorderRadius.all(
+                                                          Radius.circular(16)),
+                                                  color: hexToColor('#000000'),
+                                                ),
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          16.0),
+                                                  child: SizedBox.fromSize(
+                                                    size: const Size.fromRadius(
+                                                        16),
+                                                    child: (logic.moviesList
+                                                                    .value !=
+                                                                null &&
+                                                            logic.moviesList
+                                                                    .value[i] !=
+                                                                'null')
+                                                        ? Image.network(
+                                                            '${logic.moviesList.value[i].posterUrl}',
+                                                          )
+                                                        : SizedBox(),
+                                                  ),
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 12,
+                                              ),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      '${logic.moviesList.value[i].title}',
+                                                      maxLines: 2,
+                                                      overflow:
+                                                          TextOverflow.visible,
+                                                      softWrap: false,
+                                                      style: TextStyle(
+                                                        decoration:
+                                                            TextDecoration.none,
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                        fontFamily:
+                                                            'Inter-SemiBold',
+                                                        color: hexToColor(
+                                                            '#000000'),
+                                                        height: .2,
+                                                      ),
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 20,
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        Text(
+                                                          'Year:',
+                                                          style: TextStyle(
+                                                            decoration:
+                                                                TextDecoration
+                                                                    .none,
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                            fontFamily:
+                                                                'Inter-Regular',
+                                                            color: hexToColor(
+                                                                '#000000'),
+                                                            height: .2,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          '${logic.moviesList.value[i].year}',
+                                                          maxLines: 2,
+                                                          overflow: TextOverflow
+                                                              .visible,
+                                                          softWrap: false,
+                                                          style: TextStyle(
+                                                            decoration:
+                                                                TextDecoration
+                                                                    .none,
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                            fontFamily:
+                                                                'Inter-Regular',
+                                                            color: hexToColor(
+                                                                '#000000'),
+                                                            height: .21,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 20,
+                                                    ),
+                                                    Text(
+                                                      'Director:',
+                                                      style: TextStyle(
+                                                        decoration:
+                                                            TextDecoration.none,
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                        fontFamily:
+                                                            'Inter-Regular',
+                                                        color: hexToColor(
+                                                            '#000000'),
+                                                        height: .2,
+                                                      ),
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 20,
+                                                    ),
+                                                    Expanded(
+                                                      flex: 0,
+                                                      child: Text(
+                                                        '${logic.moviesList.value[i].director}',
+                                                        maxLines: 2,
+                                                        softWrap: false,
+                                                        overflow: TextOverflow
+                                                            .visible,
+                                                        style: TextStyle(
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .none,
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          fontFamily:
+                                                              'Inter-Regular',
+                                                          color: hexToColor(
+                                                              '#000000'),
+                                                          height: .2,
+                                                        ),
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                       ),
                                     ),
-                              ],
-                            );
-                    });
-            }),
+                                  ),
+                                ),
+                            ],
+                          );
+                  });
+          },
+        ),
       ),
     );
   }

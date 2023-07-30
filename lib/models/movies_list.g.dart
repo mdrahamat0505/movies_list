@@ -17,18 +17,15 @@ class MoviesListAdapter extends TypeAdapter<MoviesList> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return MoviesList(
-      genres: (fields[1] as List?)?.cast<String>(),
-      movies: (fields[2] as List?)?.cast<Movie>(),
+      movies: (fields[1] as List?)?.cast<Movie>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, MoviesList obj) {
     writer
-      ..writeByte(2)
       ..writeByte(1)
-      ..write(obj.genres)
-      ..writeByte(2)
+      ..writeByte(1)
       ..write(obj.movies);
   }
 
@@ -58,18 +55,19 @@ class MovieAdapter extends TypeAdapter<Movie> {
       title: fields[2] as String?,
       year: fields[3] as String?,
       runtime: fields[4] as String?,
-      genres: (fields[5] as List?)?.cast<String>(),
+      empty: (fields[5] as List?)?.cast<String>(),
       director: fields[6] as String?,
       actors: fields[7] as String?,
       plot: fields[8] as String?,
       posterUrl: fields[9] as String?,
+      genres: (fields[10] as List?)?.cast<String>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, Movie obj) {
     writer
-      ..writeByte(9)
+      ..writeByte(10)
       ..writeByte(1)
       ..write(obj.id)
       ..writeByte(2)
@@ -79,7 +77,7 @@ class MovieAdapter extends TypeAdapter<Movie> {
       ..writeByte(4)
       ..write(obj.runtime)
       ..writeByte(5)
-      ..write(obj.genres)
+      ..write(obj.empty)
       ..writeByte(6)
       ..write(obj.director)
       ..writeByte(7)
@@ -87,7 +85,9 @@ class MovieAdapter extends TypeAdapter<Movie> {
       ..writeByte(8)
       ..write(obj.plot)
       ..writeByte(9)
-      ..write(obj.posterUrl);
+      ..write(obj.posterUrl)
+      ..writeByte(10)
+      ..write(obj.genres);
   }
 
   @override
@@ -101,13 +101,45 @@ class MovieAdapter extends TypeAdapter<Movie> {
           typeId == other.typeId;
 }
 
+class GenresListAdapter extends TypeAdapter<GenresList> {
+  @override
+  final int typeId = 3;
+
+  @override
+  GenresList read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return GenresList(
+      genres: (fields[1] as List?)?.cast<String>(),
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, GenresList obj) {
+    writer
+      ..writeByte(1)
+      ..writeByte(1)
+      ..write(obj.genres);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is GenresListAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
 MoviesList _$MoviesListFromJson(Map<String, dynamic> json) => MoviesList(
-      genres:
-          (json['genres'] as List<dynamic>?)?.map((e) => e as String).toList(),
       movies: (json['movies'] as List<dynamic>?)
           ?.map((e) => Movie.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -115,7 +147,6 @@ MoviesList _$MoviesListFromJson(Map<String, dynamic> json) => MoviesList(
 
 Map<String, dynamic> _$MoviesListToJson(MoviesList instance) =>
     <String, dynamic>{
-      'genres': instance.genres,
       'movies': instance.movies,
     };
 
@@ -124,12 +155,14 @@ Movie _$MovieFromJson(Map<String, dynamic> json) => Movie(
       title: json['title'] as String?,
       year: json['year'] as String?,
       runtime: json['runtime'] as String?,
-      genres:
-          (json['genres'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      empty:
+          (json['empty'] as List<dynamic>?)?.map((e) => e as String).toList(),
       director: json['director'] as String?,
       actors: json['actors'] as String?,
       plot: json['plot'] as String?,
       posterUrl: json['posterUrl'] as String?,
+      genres:
+          (json['genres'] as List<dynamic>?)?.map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$MovieToJson(Movie instance) => <String, dynamic>{
@@ -137,9 +170,20 @@ Map<String, dynamic> _$MovieToJson(Movie instance) => <String, dynamic>{
       'title': instance.title,
       'year': instance.year,
       'runtime': instance.runtime,
-      'genres': instance.genres,
+      'empty': instance.empty,
       'director': instance.director,
       'actors': instance.actors,
       'plot': instance.plot,
       'posterUrl': instance.posterUrl,
+      'genres': instance.genres,
+    };
+
+GenresList _$GenresListFromJson(Map<String, dynamic> json) => GenresList(
+      genres:
+          (json['genres'] as List<dynamic>?)?.map((e) => e as String).toList(),
+    );
+
+Map<String, dynamic> _$GenresListToJson(GenresList instance) =>
+    <String, dynamic>{
+      'genres': instance.genres,
     };

@@ -3,16 +3,13 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'movies_list.g.dart';
 
-@JsonSerializable()
 @HiveType(typeId: 1)
+@JsonSerializable()
 class MoviesList {
   @HiveField(1)
-  List<String>? genres;
-  @HiveField(2)
   List<Movie>? movies;
 
   MoviesList({
-    this.genres,
     this.movies,
   });
 
@@ -21,8 +18,8 @@ class MoviesList {
   Map<String, dynamic> toJson() => _$MoviesListToJson(this);
 }
 
-@JsonSerializable()
 @HiveType(typeId: 2)
+@JsonSerializable()
 class Movie {
   @HiveField(1)
   int? id;
@@ -33,7 +30,7 @@ class Movie {
   @HiveField(4)
   String? runtime;
   @HiveField(5)
-  List<String>? genres;
+  List<String>? empty;
   @HiveField(6)
   String? director;
   @HiveField(7)
@@ -42,19 +39,37 @@ class Movie {
   String? plot;
   @HiveField(9)
   String? posterUrl;
+  @HiveField(10)
+  List<String>? genres;
 
   Movie({
     this.id,
     this.title,
     this.year,
     this.runtime,
-    this.genres,
+    this.empty,
     this.director,
     this.actors,
     this.plot,
     this.posterUrl,
+    this.genres,
   });
 
   factory Movie.fromJson(Map<String, dynamic> json) => _$MovieFromJson(json);
   Map<String, dynamic> toJson() => _$MovieToJson(this);
+}
+
+@HiveType(typeId: 3)
+@JsonSerializable()
+class GenresList {
+  @HiveField(1)
+  List<String>? genres;
+
+  GenresList({
+    this.genres,
+  });
+
+  factory GenresList.fromJson(Map<String, dynamic> json) =>
+      _$GenresListFromJson(json);
+  Map<String, dynamic> toJson() => _$GenresListToJson(this);
 }
