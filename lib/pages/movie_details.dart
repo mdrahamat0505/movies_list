@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movies_list/controllers/home_page_controller.dart';
 import 'package:movies_list/helpers/hex_color.dart';
-import 'package:movies_list/pages/home_page.dart';
-
 import 'package:movies_list/models/movies_list.dart';
+import 'package:movies_list/pages/home_page.dart';
 
 class MovieDetails extends StatelessWidget {
   final Movie movie;
@@ -15,7 +13,6 @@ class MovieDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    HomePageController logic = Get.find();
     return SafeArea(
       child: Scaffold(
         body: Stack(
@@ -86,38 +83,43 @@ class MovieDetails extends StatelessWidget {
                             scrollDirection: Axis.horizontal,
                             children: [
                               for (int i = 0;
-                                  i <= logic.genres.value.length - 1;
+                                  i <= movie.genres!.length - 1;
                                   i++)
-                                ElevatedButton(
-                                  onPressed: () {},
-                                  style: ElevatedButton.styleFrom(
-                                    foregroundColor: hexToColor('#FFFFFF'),
-                                    backgroundColor: hexToColor('#FFFFFF'),
-                                    padding:
-                                        const EdgeInsets.fromLTRB(8, 16, 8, 16),
-                                    minimumSize: const Size(72, 36),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(70.0),
-                                      side: BorderSide(
-                                        color: hexToColor(
-                                          '#111322',
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(8, 10, 8, 10),
+                                  child: ElevatedButton(
+                                    onPressed: () {},
+                                    style: ElevatedButton.styleFrom(
+                                      foregroundColor: hexToColor('#FFFFFF'),
+                                      backgroundColor: hexToColor('#FFFFFF'),
+                                      padding: const EdgeInsets.fromLTRB(
+                                          8, 16, 8, 16),
+                                      minimumSize: const Size(72, 36),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(70.0),
+                                        side: BorderSide(
+                                          color: hexToColor(
+                                            '#111322',
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 5),
-                                    child: Text(
-                                      'Crime',
-                                      style: TextStyle(
-                                        decoration: TextDecoration.none,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w400,
-                                        fontFamily: 'Inter-Medium',
-                                        color: hexToColor('#000000'),
-                                        height: .2,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 5),
+                                      child: Text(
+                                        '${movie.genres?[i]}',
+                                        style: TextStyle(
+                                          decoration: TextDecoration.none,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400,
+                                          fontFamily: 'Inter-Medium',
+                                          color: hexToColor('#000000'),
+                                          height: .2,
+                                        ),
+                                        textAlign: TextAlign.end,
                                       ),
-                                      textAlign: TextAlign.end,
                                     ),
                                   ),
                                 ),
@@ -135,7 +137,7 @@ class MovieDetails extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    '${logic.genres.value.length} Crime movies',
+                                    '${movie.genres?.length} movies',
                                     style: TextStyle(
                                       decoration: TextDecoration.none,
                                       fontSize: 30,
