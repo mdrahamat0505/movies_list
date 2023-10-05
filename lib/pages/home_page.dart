@@ -36,6 +36,7 @@ class _HomePageState extends State<HomePage> {
         // logic.GetOpenTrades();
         // logic.itemCount.value = logic.itemCount.value + 1;
       },
+
       child: Scaffold(
         backgroundColor: hexToColor('#FFFFFF'),
         appBar: AppBar(
@@ -81,12 +82,12 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
           systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: hexToColor('#000000'),
+            statusBarColor: hexToColor('#FFFFFF'),
             statusBarBrightness: Brightness.dark,
             statusBarIconBrightness: Brightness.dark,
             systemNavigationBarIconBrightness: Brightness.dark,
-            systemNavigationBarDividerColor: hexToColor('#000000'),
-            systemNavigationBarColor: hexToColor('#000000'),
+            systemNavigationBarDividerColor: hexToColor('#FFFFFF'),
+            systemNavigationBarColor: hexToColor('#FFFFFF'),
           ),
         ),
         body: GetBuilder<HomePageController>(
@@ -216,6 +217,7 @@ class _HomePageState extends State<HomePage> {
                                                       const BorderRadius.all(
                                                           Radius.circular(16)),
                                                   color: hexToColor('#000000'),
+
                                                 ),
                                                 child: ClipRRect(
                                                   borderRadius:

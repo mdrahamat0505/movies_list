@@ -31,7 +31,9 @@ class HomePageController extends GetxController with ApiService {
       if (movie != null) {
         moviesList.value.addAll(movie as List<Movie>);
       }
-    } catch (e) {}
+    } catch (e) {
+
+    }
     // TODO: implement onReady
     super.onReady();
   }
